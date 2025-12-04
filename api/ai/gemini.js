@@ -22,13 +22,13 @@ export default async function handler(req, res) {
 
   const { model, prompt, temperature, tools, apiKey } = req.body;
 
-  // 优先使用前端传递的 API Key，其次使用环境变量
-  const effectiveApiKey = apiKey || GEMINI_API_KEY;
+  // 优先使用 Vercel 环境变量，前端传递的 API Key 作为备用
+  const effectiveApiKey = GEMINI_API_KEY || apiKey;
 
   if (!effectiveApiKey) {
     return res.status(500).json({
       success: false,
-      error: '未配置 Gemini API Key。请在前端输入 API Key 或联系管理员设置环境变量 GEMINI_API_KEY'
+      error: '未配置 Gemini API Key。请在 Vercel 项目设置中配置 GEMINI_API_KEY 环境变量，或在前端临时输入 API Key'
     });
   }
 

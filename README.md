@@ -65,70 +65,7 @@
 
 ---
 
-# 🚀 快速开始
-
-## 方式一：本地部署（推荐用于开发）
-
-### 前置要求
-*   Node.js 18+
-*   至少需要以下 API 密钥之一：
-    - Google Gemini API Key（必需）
-    - DeepSeek API Key（必需）
-    - 聚合数据 API Key（必需，用于获取实时股票数据）
-    - 通义千问 API Key（可选）
-
-### 安装与运行
-
-1.  **克隆项目**
-    ```bash
-    git clone https://github.com/164149043/AlphaCouncil.git
-    cd AlphaCouncil
-    ```
-
-2.  **安装依赖**
-    ```bash
-    npm install
-    ```
-
-3.  **配置环境变量**
-    
-    复制 `.env.example` 文件为 `.env`：
-    ```bash
-    cp .env.example .env
-    ```
-    
-    编辑 `.env` 文件，填入你的 API 密钥：
-    ```env
-    # Google Gemini API 配置（必需）
-    # 获取地址: https://aistudio.google.com/app/apikey
-    GEMINI_API_KEY=your_gemini_api_key_here
-    
-    # DeepSeek API 配置（必需）
-    # 获取地址: https://platform.deepseek.com/api_keys
-    DEEPSEEK_API_KEY=your_deepseek_api_key_here
-    
-    # 聚合数据 API 配置（必需）
-    # 获取地址: https://www.juhe.cn/
-    # 需要申请: 沪深股票-基本数据接口
-    JUHE_API_KEY=your_juhe_api_key_here
-    
-    # 通义千问 API 配置（可选）
-    # 获取地址: https://dashscope.console.aliyun.com/apiKey
-    QWEN_API_KEY=your_qwen_api_key_here
-    ```
-
-4.  **启动开发服务器**
-    ```bash
-    npm run dev
-    ```
-
-5.  **使用说明**
-    *   打开浏览器访问 `http://localhost:3000`。
-    *   输入股票代码（如 `600519` 或 `sz000001`）。
-    *   （可选）点击"API 密钥配置"展开，可以输入临时 API 密钥覆盖服务器配置。
-    *   点击"启动分析"。
-
-## 方式二:Vercel 部署（推荐用于生产）
+# 🚀 快速开始 - Vercel 部署
 
 ### 部署到 Vercel
 
@@ -144,7 +81,7 @@
    - 选择你 fork 的仓库
    - Vercel 会自动检测 Vite 框架
 
-3. **配置环境变量（必需）**
+3. **配置环境变量（强烈推荐）**
    
    在 Vercel 项目设置中，添加以下环境变量：
    
@@ -155,7 +92,7 @@
    QWEN_API_KEY=你的_通义千问_API_密钥（可选）
    ```
    
-   > ⚠️ **重要**: 如果不配置环境变量，用户必须在前端手动输入 API 密钥才能使用系统。
+   > ⚠️ **重要**：系统会优先使用 Vercel 环境变量中配置的 API Key，前端输入仅作为备用方案。建议在 Vercel 配置所有必需的 API Key 以获得最佳体验。
 
 4. **点击 Deploy**
    - Vercel 会自动构建并部署你的应用
@@ -171,31 +108,13 @@
 5. 选择应用环境（Production / Preview / Development）
 6. 点击 **Save**
 
-详细部署指南请参考 [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md) 文件。
+### 使用说明
 
-### 本地开发
-
-#### 前置要求
-*   Node.js 18+
-*   Google Gemini API Key (已内置，可选更换)
-*   DeepSeek / 通义千问 API Key (已内置，可选更换)
-
-#### 安装与运行
-
-1.  **安装依赖**
-    ```bash
-    npm install
-    ```
-
-2.  **启动开发服务器**
-    ```bash
-    npm run dev
-    ```
-
-3.  **使用说明**
-    *   打开浏览器访问 `http://localhost:5173`。
-    *   输入股票代码（如 `600519` 或 `sz000001`）。
-    *   点击"启动分析"。
+部署完成后：
+- 访问您的 Vercel 部署链接
+- 输入股票代码（如 `600519` 或 `sz000001`）
+- （可选）在前端配置面板输入临时 API 密钥
+- 点击"启动分析"开始智能体协作分析
 
 ---
 
@@ -234,16 +153,16 @@
 
 ---
 
-## 💡 前端手动输入 API 密钥
+## 💡 前端手动输入 API 密钥（可选）
 
-如果你不想在服务器配置环境变量，或者想使用临时的 API 密钥，可以：
+如果未在 Vercel 配置环境变量，或想使用临时 API 密钥，可以：
 
 1. 在首页点击 **"API 密钥配置（可选）"** 按钮展开配置面板
-2. 输入你的 API 密钥（支持部分输入，未填写的将使用服务器默认配置）
+2. 输入您的 API 密钥（未填写的将使用 Vercel 环境变量配置）
 3. 点击"启动系统"进行分析
 
-> **安全提示**：前端输入的 API 密钥仅在当前会话中有效，不会被存储。
+> **安全提示**：前端输入的 API 密钥仅在当前会话中有效，不会被存储到服务器。
 
 ---
 
-Developed with ❤️ by AlphaCouncil Team.
+Developed with ❤️ by 张一依有把越女剑.
