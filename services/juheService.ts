@@ -43,20 +43,7 @@ export interface DapanData {
   traNumber: string; // 成交量（万手）
 }
 
-// 扩展的股票上下文数据（用于区间验证）
-export interface ExtendedStockContext {
-  currentPrice: number;
-  volatility20d?: number;      // 20日波动率（基于涨跌幅计算）
-  dailyAmplitude: number;      // 日振幅百分比
-  volume: number;              // 成交量（手）
-  turnover: number;            // 成交额（元）
-  priceChange: number;         // 涨跌幅
-  marketIndex?: {              // 大盘指数信息
-    name: string;
-    point: number;
-    change: number;
-  };
-}
+
 
 // API响应结构
 interface JuheApiResponse {
@@ -75,13 +62,7 @@ interface JuheApiResponse {
   error_code?: number;
 }
 
-/**
- * 计算20日波动率（简化版，基于当日振幅估算）
- */
-function estimateVolatility20d(dailyAmplitude: number): number {
-  // 简化算法：假设20日波动率约为日振幅的1.5-2倍
-  return (dailyAmplitude / 100) * 1.8;
-}
+
 
 /**
  * 获取实时股票数据
@@ -126,36 +107,7 @@ export async function fetchStockData(symbol: string, apiKey?: string): Promise<S
   }
 }
 
-/**
- * 构建扩展股票上下文（用于区间验证）
- */
-export function buildStockContext(data: StockRealtimeData): ExtendedStockContext {
-  const currentPrice = parseFloat(data.nowPri);
-  const todayMax = parseFloat(data.todayMax);
-  const todayMin = parseFloat(data.todayMin);
-  const dailyAmplitude = ((todayMax - todayMin) / currentPrice) * 100;
-  
-  const context: ExtendedStockContext = {
-    currentPrice,
-    dailyAmplitude,
-    volume: parseFloat(data.traNumber),
-    turnover: parseFloat(data.traAmount),
-    priceChange: parseFloat(data.increPer),
-    volatility20d: estimateVolatility20d(dailyAmplitude)
-  };
-  
-  // 添加大盘数据（如果存在）
-  const dapandata = (data as any).dapandata;
-  if (dapandata) {
-    context.marketIndex = {
-      name: dapandata.name,
-      point: parseFloat(dapandata.dot),
-      change: parseFloat(dapandata.rate)
-    };
-  }
-  
-  return context;
-}
+
 
 /**
  * 将原始 JSON 数据格式化为 AI 可读的字符串

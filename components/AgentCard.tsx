@@ -99,7 +99,7 @@ const AgentCard: React.FC<AgentCardProps> = ({ config, content, isLoading, isPen
 
     setIsTyping(true);
     let currentIndex = 0;
-    const typingSpeed = 10; // 更快的打字速度
+    const typingSpeed = 50; // 更快的打字速度
     
     setDisplayedContent(""); 
 
