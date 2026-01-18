@@ -295,9 +295,9 @@ export const DEFAULT_AGENTS: Record<AgentRole, AgentConfig> = {
 export const MODEL_OPTIONS = [
   // Google Gemini 系列
   { provider: ModelProvider.GEMINI, name: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash' },
-  { provider: ModelProvider.GEMINI, name: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash' },
+  { provider: ModelProvider.GEMINI, name: 'gemini-3-flash-preview', label: 'Gemini 3 Flash Preview' },
   // DeepSeek 系列
-  { provider: ModelProvider.DEEPSEEK, name: 'deepseek-chat', label: 'DeepSeek V3' },
+  { provider: ModelProvider.DEEPSEEK, name: 'deepseek-chat', label: 'DeepSeek' },
   { provider: ModelProvider.DEEPSEEK, name: 'deepseek-reasoner', label: 'DeepSeek-R1 推理' },
   // 通义千问系列
   { provider: ModelProvider.QWEN, name: 'qwen-plus', label: 'Qwen Plus' },
